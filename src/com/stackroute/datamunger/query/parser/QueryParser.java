@@ -24,6 +24,7 @@ package com.stackroute.datamunger.query.parser;
 public class QueryParser {
 
 	private QueryParameter queryParameter = new QueryParameter();
+	
 
 	/*
 	 * This method will parse the queryString and will return the object of
@@ -38,6 +39,11 @@ public class QueryParser {
 	 * Extract the name of the file from the query. File name can be found after the
 	 * "from" clause.
 	 */
+    public String getFileName(String queryString) {
+		
+		String[] splitstring =  queryString.toLowerCase().split(" ");
+		return splitstring[3];
+    }
 
 	/*
 	 * 
@@ -45,6 +51,18 @@ public class QueryParser {
 	 * baseQuery from the query string. BaseQuery contains from the beginning of the
 	 * query till the where clause
 	 */
+    public String getBaseQuery(String queryString) {
+		if(queryString.toLowerCase().contains("where")) {
+			String[] splitstring =  queryString.toLowerCase().split("where");
+			return splitstring[0].trim();
+		}
+		else {
+			String[] splitString=queryString.toLowerCase().split("group");
+			return splitString[0].trim();
+		}
+		
+	}
+
 
 	/*
 	 * extract the order by fields from the query string. Please note that we will
@@ -53,6 +71,7 @@ public class QueryParser {
 	 * data/ipl.csv order by city from the query mentioned above, we need to extract
 	 * "city". Please note that we can have more than one order by fields.
 	 */
+    
 
 	/*
 	 * Extract the group by fields from the query string. Please note that we will
