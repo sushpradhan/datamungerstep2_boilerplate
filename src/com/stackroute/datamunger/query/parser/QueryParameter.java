@@ -23,9 +23,11 @@ public class QueryParameter {
 	
 
 	public void setFileName(String fileName) {
+		this.fileName=fileName;
 	}
 
 	public void setBaseQuery(String baseQuery) {
+		this.baseQuery=baseQuery;
 	}
 
 	public void setRestrictions(List<Restriction> restrictions) {
